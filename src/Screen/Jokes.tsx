@@ -1,4 +1,6 @@
 import React, {useCallback, useEffect, useReducer} from 'react';
+import {JokeReducer} from '../Reducer/JokeReducer';
+import {Joke} from '../Types/Types';
 import {START_FETCHING, END_FECTCHING, LOAD_MORE} from '../Action/JokesAction';
 import {
   StyleSheet,
@@ -10,49 +12,14 @@ import {
 import JokeCell from '../Components/JokeItem';
 import {fetchJokes} from '../Service/JokeService';
 
-export interface Joke {
-  id: string;
-  joke: string;
-}
-
 const initialState = {
   jokes: [] as Joke[],
   page: 1,
   loading: false,
 };
 
-export interface intialStateType {
-  jokes: Array<Joke>;
-  page: number;
-  loading: boolean;
-}
-export interface actionType {
-  type: string;
-  payload?: Array<Joke>;
-}
-
-const reducer = (state: intialStateType, action: actionType) => {
-  switch (action.type) {
-    case START_FETCHING:
-      return {...state, loading: true};
-    case END_FECTCHING:
-      return {
-        ...state,
-        loading: false,
-        jokes: state.jokes.concat(action.payload),
-      };
-    case LOAD_MORE:
-      return {
-        ...state,
-        page: state.page + 1,
-      };
-    default:
-      throw new Error();
-  }
-};
-
 const Jokes = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(JokeReducer, initialState);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,11 +37,11 @@ const Jokes = () => {
     ({item}: {item: Joke}) => <JokeCell joke={item} />,
     [],
   );
-  const handleLoadMore=()=>{
-    if(!state.loading){
+  const handleLoadMore = () => {
+    if (!state.loading) {
       dispatch({type: LOAD_MORE});
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.flex}>
