@@ -1,5 +1,6 @@
-import {intialStateType,actionType} from '../Types/Types'
-import {START_FETCHING, END_FECTCHING, LOAD_MORE} from '../Action/JokesAction';
+import {intialStateType, actionType} from '../types/Types';
+import {START_FETCHING, END_FECTCHING, LOAD_MORE} from '../action/JokesAction';
+
 export const JokeReducer = (state: intialStateType, action: actionType) => {
   switch (action.type) {
     case START_FETCHING:
@@ -19,3 +20,4 @@ export const JokeReducer = (state: intialStateType, action: actionType) => {
       throw new Error();
   }
 };
+

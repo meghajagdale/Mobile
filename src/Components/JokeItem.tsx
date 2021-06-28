@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Joke} from '../Screen/Jokes';
+import {Joke} from '../types/Types';
 
 interface Props {
   joke: Joke;

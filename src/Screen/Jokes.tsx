@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useReducer} from 'react';
-import {JokeReducer} from '../Reducer/JokeReducer';
-import {Joke} from '../Types/Types';
-import {START_FETCHING, END_FECTCHING, LOAD_MORE} from '../Action/JokesAction';
+import {JokeReducer} from '../reducer/JokeReducer';
+import {Joke} from '../types/Types';
+import {START_FETCHING, END_FECTCHING, LOAD_MORE} from '../action/JokesAction';
 import {
   StyleSheet,
   FlatList,
@@ -9,8 +9,8 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native';
-import JokeCell from '../Components/JokeItem';
-import {fetchJokes} from '../Service/JokeService';
+import JokeCell from '../components/JokeItem';
+import {fetchJokes} from '../service/JokeService';
 
 const initialState = {
   jokes: [] as Joke[],
