@@ -70,9 +70,11 @@ const Jokes = () => {
     ({item}: {item: Joke}) => <JokeCell joke={item} />,
     [],
   );
-  const onMomentumScrollEnd = () => {
-    dispatch({type: LOAD_MORE});
-  };
+  const handleLoadMore=()=>{
+    if(!state.loading){
+      dispatch({type: LOAD_MORE});
+    }
+  }
 
   return (
     <SafeAreaView style={styles.flex}>
@@ -83,7 +85,7 @@ const Jokes = () => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           onEndReachedThreshold={0}
-          onMomentumScrollEnd={onMomentumScrollEnd}
+          onEndReached={handleLoadMore}
         />
         {state.loading && (
           <View style={styles.overlay}>
