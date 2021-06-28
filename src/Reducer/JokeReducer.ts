@@ -20,4 +20,3 @@ export const JokeReducer = (state: intialStateType, action: actionType) => {
       throw new Error();
   }
 };
-

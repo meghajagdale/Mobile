@@ -24,15 +24,14 @@ const Jokes = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch({type: START_FETCHING});
-
       const response = await fetchJokes(state.page);
-
       dispatch({type: END_FECTCHING, payload: response});
     };
     fetchData();
   }, [state.page]);
 
   const keyExtractor = (joke: Joke, index: number) => `${joke.id}${index}`;
+
   const renderItem = useCallback(
     ({item}: {item: Joke}) => <JokeCell joke={item} />,
     [],
